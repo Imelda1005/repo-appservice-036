@@ -1,5 +1,11 @@
 const express = require('express');
 const app = express();
+// Middleware untuk mencatat log setiap request yang masuk
+app.use((req, res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+  next();
+});
+
 const port = process.env.PORT || 3000;
 app.get('/', (req, res) => {
  res.send('<h1>Praktikum Azure App Service</h1><p>Aplikasi berjalan.</p>');
